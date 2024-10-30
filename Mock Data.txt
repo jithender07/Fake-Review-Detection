@@ -1,0 +1,18 @@
+# Sample Data (mock data for testing)
+mock_data = [
+    {"review_text": "Great product! It exceeded my expectations, would recommend to others.", "label": 0},
+    {"review_text": "Amazing service, fast delivery, and the quality is top-notch. Will buy again!", "label": 0},
+    {"review_text": "Worst product ever. Very bad quality and terrible customer service!", "label": 0},
+    {"review_text": "Absolutely love it! Best purchase I’ve made in a while.", "label": 0},
+    {"review_text": "Get this product for free if you write a positive review!", "label": 1},
+    {"review_text": "This is definitely the best product on the market. Everyone should buy it now!", "label": 1},
+    {"review_text": "Excellent! Highly recommend this product!", "label": 0},
+    {"review_text": "It works as advertised. Good quality and reasonable price.", "label": 0},
+    {"review_text": "I was asked to leave a 5-star review in exchange for a discount.", "label": 1},
+    {"review_text": "Best product I've ever used! It changed my life completely.", "label": 1},
+    {"review_text": "Absolutely terrible. The item broke after a single use.", "label": 0},
+    {"review_text": "This product is amazing. Works like magic!", "label": 0},
+    {"review_text": "Buy now! Don’t miss out on this incredible product!", "label": 1},
+    {"review_text": "Perfect! Exceeded my expectations and works perfectly.", "label": 0},
+    {"review_text": "Poor quality, not worth the money. Wouldn't recommend to anyone.", "label": 0}
+]
