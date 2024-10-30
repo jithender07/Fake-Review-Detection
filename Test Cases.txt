@@ -1,0 +1,97 @@
+# Test Cases
+
+# 1. Basic Detection Test
+def test_basic_detection(model, mock_data):
+    """Test if the model can accurately detect fake and genuine reviews."""
+    test_texts = [item['review_text'] for item in mock_data]
+    test_labels = [item['label'] for item in mock_data]
+    
+    # Preprocess and predict using model
+    test_vectors = tfidf.transform(test_texts)  # Assuming TF-IDF preprocessing
+    predictions = model.predict(test_vectors)
+    
+    # Evaluate model performance on mock data
+    accuracy = accuracy_score(test_labels, predictions)
+    print("Basic Detection Accuracy:", accuracy)
+    return accuracy
+
+# 2. Edge Case - Short Reviews
+short_reviews = [
+    {"review_text": "Good", "label": 0},
+    {"review_text": "Bad", "label": 0},
+    {"review_text": "Love it", "label": 0},
+    {"review_text": "Best ever", "label": 1},
+    {"review_text": "Buy now!", "label": 1}
+]
+
+def test_short_reviews(model, short_reviews):
+    test_texts = [item['review_text'] for item in short_reviews]
+    test_labels = [item['label'] for item in short_reviews]
+    test_vectors = tfidf.transform(test_texts)
+    predictions = model.predict(test_vectors)
+    accuracy = accuracy_score(test_labels, predictions)
+    print("Short Reviews Accuracy:", accuracy)
+    return accuracy
+
+# 3. Edge Case - Repeated Phrases
+repeated_reviews = [
+    {"review_text": "Great product! Great product! Great product!", "label": 1},
+    {"review_text": "Worst ever. Worst ever. Worst ever.", "label": 1}
+]
+
+def test_repeated_phrases(model, repeated_reviews):
+    test_texts = [item['review_text'] for item in repeated_reviews]
+    test_labels = [item['label'] for item in repeated_reviews]
+    test_vectors = tfidf.transform(test_texts)
+    predictions = model.predict(test_vectors)
+    accuracy = accuracy_score(test_labels, predictions)
+    print("Repeated Phrases Accuracy:", accuracy)
+    return accuracy
+
+# 4. Boundary Test - Mixed Sentiment Reviews
+mixed_sentiment_reviews = [
+    {"review_text": "The product quality is excellent, but the service was terrible.", "label": 0},
+    {"review_text": "Love the design, but it broke within a week. Disappointed.", "label": 0}
+]
+
+def test_mixed_sentiment_reviews(model, mixed_sentiment_reviews):
+    test_texts = [item['review_text'] for item in mixed_sentiment_reviews]
+    test_labels = [item['label'] for item in mixed_sentiment_reviews]
+    test_vectors = tfidf.transform(test_texts)
+    predictions = model.predict(test_vectors)
+    accuracy = accuracy_score(test_labels, predictions)
+    print("Mixed Sentiment Accuracy:", accuracy)
+    return accuracy
+
+# 5. Complex Vocabulary Reviews
+complex_reviews = [
+    {"review_text": "An exceptional artifact with unparalleled craftsmanship and aesthetic appeal.", "label": 0},
+    {"review_text": "A lackluster product that failed to meet the expected quality standards.", "label": 1}
+]
+
+def test_complex_vocabulary(model, complex_reviews):
+    test_texts = [item['review_text'] for item in complex_reviews]
+    test_labels = [item['label'] for item in complex_reviews]
+    test_vectors = tfidf.transform(test_texts)
+    predictions = model.predict(test_vectors)
+    accuracy = accuracy_score(test_labels, predictions)
+    print("Complex Vocabulary Accuracy:", accuracy)
+    return accuracy
+
+# Assuming `nb_model` is a trained Naive Bayes model and `tfidf` is the trained TF-IDF transformer
+
+# Run test cases
+print("Running Basic Detection Test")
+test_basic_detection(nb_model, mock_data)
+
+print("Running Short Reviews Test")
+test_short_reviews(nb_model, short_reviews)
+
+print("Running Repeated Phrases Test")
+test_repeated_phrases(nb_model, repeated_reviews)
+
+print("Running Mixed Sentiment Test")
+test_mixed_sentiment_reviews(nb_model, mixed_sentiment_reviews)
+
+print("Running Complex Vocabulary Test")
+test_complex_vocabulary(nb_model, complex_reviews)
